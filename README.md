@@ -1,48 +1,58 @@
 # dotfiles
 
-Personal macOS configuration by [@raihanpka](https://github.com/raihanpka)  
-Managed with **GNU Stow** + **Homebrew Bundle**.
+Personal macOS configuration by [@raihanpka](https://github.com/raihanpka) Managed with **GNU Stow** + **Homebrew Bundle**.
 
-## Quick Start (New Mac)
+## what's inside
+
+Configs for the tools I use daily — Zsh with Powerlevel10k, Git, Ghostty,
+and VS Code. A Brewfile that captures every CLI tool and GUI app manageable
+via Homebrew. A one-command install script that wires everything up on a
+fresh Mac.
+
+Check the folders above and take what's useful.
+
+## structure
+```
+.dotfiles/
+├── Brewfile          # all brew-managed apps and tools
+├── install.sh        # one-command setup script
+├── git/
+│   └── .gitconfig
+├── ghostty/
+│   └── .config/ghostty/config
+├── macos/
+│   └── defaults.sh
+├── vscode/
+│   ├── settings.json
+│   └── extensions.txt
+└── zsh/
+    ├── .zshrc
+    └── .p10k.zsh
+```
+
+## install
 ```bash
 git clone https://github.com/raihanpka/dotfiles.git ~/.dotfiles
-bash ~/.dotfiles/install.sh
+cd ~/.dotfiles
+bash install.sh
 ```
 
-## What's Managed
+This installs Homebrew, Oh My Zsh, Powerlevel10k, symlinks all configs
+into the right places, and installs VS Code extensions automatically.
 
-| Folder | Config | Target |
-|--------|--------|--------|
-| `zsh/` | `.zshrc`, `.p10k.zsh` | `~/` |
-| `git/` | `.gitconfig` | `~/` |
-| `ghostty/` | `config` | `~/Library/Application Support/com.mitchellh.ghostty/` |
-| `vscode/` | `settings.json`, `extensions.txt` | `~/Library/Application Support/Code/User/` |
+## stow
 
-## Apps
-
-### Auto-install via Brewfile
-Run `brew bundle` to restore all CLI tools and GUI apps.
-
-### Manual Install Required
-| App | Where |
-|-----|-------|
-| LINE | App Store |
-| Microsoft 365 | office.com |
-| Cisco Packet Tracer | netacad.com |
-| DaVinci Resolve | blackmagicdesign.com |
-| DataGrip | jetbrains.com |
-| Minecraft | minecraft.net |
-| Stockbit | App Store |
-| Termius | App Store |
-| Trae | trae.ai |
-| Xcode | App Store |
-
-## Stow Usage
+GNU Stow handles symlinking. Each folder maps directly to your home directory.
 ```bash
-# Link semua config
+# link a topic
 cd ~/.dotfiles
-stow zsh git ghostty
+stow zsh
 
-# Unlink
+# unlink a topic
 stow -D zsh
 ```
+
+## bugs
+
+This is built for my own machine. If something does not work on yours,
+open an issue and I will take a look.
