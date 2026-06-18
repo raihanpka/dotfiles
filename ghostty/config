@@ -18,10 +18,14 @@
 clipboard-read = allow
 clipboard-write = allow
 copy-on-select = true
-background-opacity = 0.97
+background-opacity = 0.85
 background-blur = 20
 window-height = 35
 window-width = 110
 theme = Deep
 font-size = 14
+macos-option-as-alt = true
+
+# Keybind for Claude Code
+keybind = alt+t=text:\x1bt
 

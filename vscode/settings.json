@@ -1,0 +1,122 @@
+{
+    "files.autoSave": "afterDelay",
+    "git.ignoreMissingGitWarning": true,
+    "debug.disassemblyView.showSourceCode": false,
+    "code-runner.runInTerminal": true,
+    "explorer.confirmDragAndDrop": false,
+    "r.alwaysUseActiveTerminal": true,
+    "r.rterm.windows": "\"C:\\Program Files\\R\\R-4.4.1\\bin\\R.exe\"",
+    "explorer.confirmDelete": false,
+    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell"
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": [],
+            "icon": "terminal-cmd"
+        },
+        "Git Bash": {
+            "source": "Git Bash"
+        },
+        "Windows PowerShell": {
+            "path": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe"
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "Windows PowerShell",
+    "explorer.confirmPasteNative": false,
+    "git.suggestSmartCommit": false,
+    "workbench.editor.empty.hint": "hidden",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "wakatime.apiKey": "",
+    "makefile.configureOnOpen": true,
+    "workbench.startupEditor": "none",
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "jupyter.askForKernelRestart": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "chat.instructionsFilesLocations": {
+        ".github/instructions": true,
+        "/var/folders/f9/pr31r6n923bc7rhzy5vxzxt40000gn/T/postman-http-request-post-response.instructions.md": true,
+        "/var/folders/f9/pr31r6n923bc7rhzy5vxzxt40000gn/T/postman-http-request-pre-request.instructions.md": true,
+        "C:\\Users\\Raihan\\AppData\\Local\\Temp\\postman-http-request-post-response.instructions.md": true,
+        "C:\\Users\\Raihan\\AppData\\Local\\Temp\\postman-http-request-pre-request.instructions.md": true,
+        "/var/folders/f9/pr31r6n923bc7rhzy5vxzxt40000gn/T/postman-collections-post-response.instructions.md": true,
+        "/var/folders/f9/pr31r6n923bc7rhzy5vxzxt40000gn/T/postman-collections-pre-request.instructions.md": true,
+        "/var/folders/f9/pr31r6n923bc7rhzy5vxzxt40000gn/T/postman-folder-post-response.instructions.md": true,
+        "/var/folders/f9/pr31r6n923bc7rhzy5vxzxt40000gn/T/postman-folder-pre-request.instructions.md": true
+    },
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "editor.fontFamily": "'JetBrains Mono', monospace",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 13.5,
+    "github.copilot.nextEditSuggestions.fixes": false,
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": true,
+        "scminput": false,
+        "django-html": true,
+        "python": true
+    },
+    "workbench.colorTheme": "Expo Dark",
+    "terminal.integrated.commandsToSkipShell": [
+        "matlab.interrupt"
+    ],
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        },
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "terminal.integrated.suggest.enabled": true,
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+    "javascript.updateImportsOnFileMove.enabled": "never",
+    "json.schemaDownload.trustedDomains": {
+        "https://schemastore.azurewebsites.net/": true,
+        "https://raw.githubusercontent.com/": true,
+        "https://www.schemastore.org/": true,
+        "https://json.schemastore.org/": true,
+        "https://json-schema.org/": true,
+        "https://biomejs.dev": true
+    },
+    "chat.mcp.gallery.enabled": true,
+    "chat.viewSessions.orientation": "stacked",
+    "extensions.ignoreRecommendations": true,
+    "terminal.integrated.initialHint": false,
+    "chat.tips.enabled": false,
+    "claudeCode.preferredLocation": "panel",
+    "chat.plugins.marketplaces": [
+        "github/copilot-plugins",
+        "github/awesome-copilot",
+        "https://github.com/obra/superpowers"
+    ],
+    "git.openRepositoryInParentFolders": "never",
+    "git.confirmSync": false,
+    "chat.tools.urls.autoApprove": {
+        "https://code.visualstudio.com": true,
+        "https://github.com/microsoft/vscode/wiki/*": true,
+        "https://www.google.com": {
+            "approveRequest": false,
+            "approveResponse": true
+        }
+    },
+    "git.addAICoAuthor": "off",
+    "chat.tools.terminal.autoApprove": {
+        "make": true
+    }
+}

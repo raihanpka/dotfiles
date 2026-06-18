@@ -112,3 +112,30 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Source machine-local overrides (not tracked in dotfiles)
+[[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
+
+# Antigravity
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# Python
+export PATH="/opt/homebrew/opt/python@3.11/libexec/bin:$PATH"
+
+# Herd injected PHP configuration
+export HERD_PHP_84_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/php/84/"
+export PATH="$HOME/Library/Application Support/Herd/bin/:$PATH"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+esac
+
+# basictex
+TEXLIVE_DIR="/usr/local/texlive"
+if [ -d "$TEXLIVE_DIR" ]; then
+  TEX_BIN=$(ls "$TEXLIVE_DIR" | grep basic | head -n 1)
+  [ -n "$TEX_BIN" ] && export PATH="$TEXLIVE_DIR/$TEX_BIN/bin/universal-darwin:$PATH"
+fi

@@ -1,3 +1,7 @@
+[user]
+	email = raihanputragpr@gmail.com
+	name = Raihan Putra Kirana
+
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
