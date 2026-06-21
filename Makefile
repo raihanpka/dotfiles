@@ -11,6 +11,7 @@
 SHELL := /bin/bash
 DOTFILES := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 HOME_DIR := $(HOME)
+SPINNER := $(DOTFILES)/scripts/spinner.sh
 
 # Colours (used in @printf statements)
 G := \033[0;32m
@@ -28,98 +29,71 @@ help:
 	@printf "\n"
 	@printf "${B}dotfiles + available targets${NC}\n"
 	@printf "\n"
-	@printf "  ${G}install${NC}       Full bootstrap (runs install.sh)\n"
-	@printf "  ${G}sync${NC}          Sync EVERY local config into this repo\n"
-	@printf "  ${G}brew-dump${NC}     Write current brew state into Brewfile\n"
-	@printf "  ${G}brew-sync${NC}     brew-dump + remove packages not in Brewfile\n"
-	@printf "  ${G}stow${NC}          Resymlink all stow managed packages\n"
-	@printf "  ${G}doctor${NC}        Health check symlinks and tools\n"
-	@printf "  ${G}clean${NC}         Remove broken symlinks pointing to this repo\n"
+	@printf "  ${G}install${NC}        Full bootstrap (runs install.sh)\n"
+	@printf "  ${G}brew-dump${NC}      Write current brew state into Brewfile\n"
+	@printf "  ${G}brew-sync${NC}      brew-dump + remove packages not in Brewfile\n"
+	@printf "  ${G}stow${NC}           Resymlink all stow managed packages\n"
+	@printf "  ${G}doctor${NC}         Health check symlinks and tools\n"
+	@printf "  ${G}clean${NC}          Remove broken symlinks pointing to this repo\n"
 	@printf "\n"
-	@printf "  ${C}sync-zsh${NC}       Copy .zshrc and .p10k.zsh into repo\n"
-	@printf "  ${C}sync-git${NC}       Copy .gitconfig into repo\n"
-	@printf "  ${C}sync-ghostty${NC}   Copy ghostty config into repo\n"
-	@printf "  ${C}sync-vscode${NC}    Copy VS Code settings + extensions into repo\n"
-	@printf "  ${C}sync-brewfile${NC}  Alias for brew-dump\n"
+	@printf "  ${Y}sync${NC}           Sync EVERY local config into this repo\n"
+	@printf "  ${Y}sync-zsh${NC}       Copy .zshrc and .p10k.zsh into repo\n"
+	@printf "  ${Y}sync-git${NC}       Copy .gitconfig into repo\n"
+	@printf "  ${Y}sync-ghostty${NC}   Copy ghostty config into repo\n"
+	@printf "  ${Y}sync-vscode${NC}    Copy VS Code settings + extensions into repo\n"
+	@printf "  ${Y}sync-brewfile${NC}  Alias for brew-dump\n"
 	@printf "\n"
 
 # Install
 install:
-	@printf "\n  ${C}::${NC} Running install.sh...\n\n"
+	@printf "\n  ${Y}::${NC} Running install.sh...\n\n"
 	@bash "$(DOTFILES)/install.sh"
 
 # Sync: copy live configs from $HOME into the repo
-sync-zsh: SYNC_FILES += zsh/.zshrc zsh/.p10k.zsh
 sync-zsh:
-	@printf "  ${C}::${NC} Syncing Zsh configs...\n"
 	@mkdir -p "$(DOTFILES)/zsh"
-	@cp "$(HOME_DIR)/.zshrc" "$(DOTFILES)/zsh/.zshrc" 2>/dev/null && \
-	  printf "  ${G}OK${NC}  .zshrc\n" || \
-	  printf "  ${Y}!!${NC}  .zshrc not found, skipping\n"
-	@cp "$(HOME_DIR)/.p10k.zsh" "$(DOTFILES)/zsh/.p10k.zsh" 2>/dev/null && \
-	  printf "  ${G}OK${NC}  .p10k.zsh\n" || \
-	  printf "  ${Y}!!${NC}  .p10k.zsh not found, skipping\n"
+	@$(SPINNER) "Syncing .zshrc" cp "$(HOME_DIR)/.zshrc" "$(DOTFILES)/zsh/.zshrc"
+	@$(SPINNER) "Syncing .p10k.zsh" cp "$(HOME_DIR)/.p10k.zsh" "$(DOTFILES)/zsh/.p10k.zsh"
 
 sync-git:
-	@printf "  ${C}::${NC} Syncing Git config...\n"
 	@mkdir -p "$(DOTFILES)/git"
-	@cp "$(HOME_DIR)/.gitconfig" "$(DOTFILES)/git/.gitconfig" && \
-	  printf "  ${G}OK${NC}  .gitconfig\n"
+	@$(SPINNER) "Syncing .gitconfig" cp "$(HOME_DIR)/.gitconfig" "$(DOTFILES)/git/.gitconfig"
 
 sync-ghostty:
-	@printf "  ${C}::${NC} Syncing Ghostty config...\n"
 	@mkdir -p "$(DOTFILES)/ghostty"
-	@cp "$(HOME_DIR)/Library/Application Support/com.mitchellh.ghostty/config" \
-	  "$(DOTFILES)/ghostty/config" && \
-	  printf "  ${G}OK${NC}  ghostty/config\n" || \
-	  printf "  ${Y}!!${NC}  ghostty config not found, skipping\n"
+	@$(SPINNER) "Syncing ghostty/config" cp "$(HOME_DIR)/Library/Application Support/com.mitchellh.ghostty/config" "$(DOTFILES)/ghostty/config"
 
 sync-vscode:
-	@printf "  ${C}::${NC} Syncing VS Code configs...\n"
 	@mkdir -p "$(DOTFILES)/vscode"
-	@cp "$(HOME_DIR)/Library/Application Support/Code/User/settings.json" \
-	  "$(DOTFILES)/vscode/settings.json" 2>/dev/null && \
-	  printf "  ${G}OK${NC}  settings.json\n" || \
-	  printf "  ${Y}!!${NC}  settings.json not found, skipping\n"
-	@which code &>/dev/null && \
-	  code --list-extensions > "$(DOTFILES)/vscode/extensions.txt" && \
-	  printf "  ${G}OK${NC}  extensions.txt\n" || \
-	  printf "  ${Y}!!${NC}  code CLI not found, skipping extensions\n"
+	@$(SPINNER) "Syncing settings.json" cp "$(HOME_DIR)/Library/Application Support/Code/User/settings.json" "$(DOTFILES)/vscode/settings.json"
+	@$(SPINNER) "Syncing extensions.txt" sh -c "code --list-extensions > $(DOTFILES)/vscode/extensions.txt"
 
 sync-brewfile: brew-dump
 
 sync: sync-zsh sync-git sync-ghostty sync-vscode brew-dump
-	@printf "\n  ${G}All configs synced.${NC}\n"
+	@printf "\n  ${Y}All configs synced.${NC}\n"
 
 # Brew
 brew-dump:
-	@printf "  ${C}::${NC} Dumping brew state into Brewfile...\n"
-	@brew bundle dump --force --file="$(DOTFILES)/Brewfile" 2>/dev/null && \
-	  printf "  ${G}OK${NC}  Brewfile updated\n" || \
-	  printf "  ${Y}!!${NC}  brew not available, skipping\n"
+	@$(SPINNER) "Dumping brew state into Brewfile" brew bundle dump --force --file="$(DOTFILES)/Brewfile"
 
 brew-sync: brew-dump
-	@printf "  ${C}::${NC} Removing packages not in Brewfile...\n"
-	@brew bundle cleanup --force --file="$(DOTFILES)/Brewfile" && \
-	  printf "  ${G}OK${NC}  cleaned up\n" || true
+	@$(SPINNER) "Removing packages not in Brewfile" brew bundle cleanup --force --file="$(DOTFILES)/Brewfile"
 
 # Stow
 STOW_PACKAGES := zsh git
 
 stow:
-	@printf "  ${C}::${NC} Re-stowing packages: $(STOW_PACKAGES)...\n"
 	@cd "$(DOTFILES)" && \
 	  for pkg in $(STOW_PACKAGES); do \
 	    if [ -d "$$pkg" ]; then \
-	      stow --adopt -t "$(HOME_DIR)" "$$pkg" 2>/dev/null; \
-	      printf "  ${G}OK${NC}  stowed $$pkg\n"; \
+	      $(SPINNER) "Stowing $$pkg" stow --adopt -t "$(HOME_DIR)" "$$pkg"; \
 	    fi; \
-	  done; \
-	  printf "  ${G}Done${NC}\n"
+	  done
 
 # Doctor
 doctor:
-	@printf "\n  ${C}::${NC} Checking symlink health...\n"
+	@printf "\n  ${Y}::${NC} Checking symlink health...\n"
 	@for f in \
 	    "$(HOME_DIR)/.zshrc" \
 	    "$(HOME_DIR)/.p10k.zsh" \
@@ -129,7 +103,7 @@ doctor:
 	  elif [ -f "$$f" ]; then \
 	    printf "  ${Y}!!${NC}  regular file (not symlink): $$f\n"; \
 	  else \
-	    printf "  ${R}!!${NC}  missing: $$f\n"; \
+	    printf "  ${Y}!!${NC}  missing: $$f\n"; \
 	  fi; \
 	done
 	@for d in \
@@ -140,23 +114,23 @@ doctor:
 	  elif [ -f "$$d" ]; then \
 	    printf "  ${Y}!!${NC}  regular file (not symlink): $$d\n"; \
 	  else \
-	    printf "  ${R}!!${NC}  missing: $$d\n"; \
+	    printf "  ${Y}!!${NC}  missing: $$d\n"; \
 	  fi; \
 	done
-	@printf "\n  ${C}::${NC} Checking key tools...\n"
+	@printf "\n  ${Y}::${NC} Checking key tools...\n"
 	@for cmd in brew stow zsh git code; do \
 	  if command -v "$$cmd" &>/dev/null; then \
 	    printf "  ${G}OK${NC}  $$cmd\n"; \
 	  else \
-	    printf "  ${R}!!${NC}  $$cmd not found\n"; \
+	    printf "  ${Y}!!${NC}  $$cmd not found\n"; \
 	  fi; \
 	done
-	@printf "\n  ${G}Doctor check complete.${NC}\n"
+	@printf "\n  ${Y}Doctor check complete.${NC}\n"
 
 # Clean
 clean:
-	@printf "  ${C}::${NC} Finding broken symlinks pointing to this repo...\n"
+	@printf "  ${Y}::${NC} Finding broken symlinks pointing to this repo...\n"
 	@find "$(HOME_DIR)" -type l -lname "$(DOTFILES)*" ! -exec test -e {} \; -print \
 	  -exec printf "  ${Y}!!${NC}  broken: {}" \; -exec rm {} \; \
 	  -exec printf " -> removed\n" \; 2>/dev/null || true
-	@printf "  ${G}Done.${NC}\n"
+	@printf "  ${Y}Done.${NC}\n"

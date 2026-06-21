@@ -6,8 +6,6 @@ tap "real-aazam/aazam"
 tap "timsutton/formulae"
 # Run your GitHub Actions locally
 brew "act"
-# Aquarium animation in ASCII art
-brew "asciiquarium"
 # Searches a binary image for embedded files and executable code
 brew "binwalk"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
@@ -40,6 +38,8 @@ brew "git-lfs"
 brew "go"
 # Fast linters runner for Go
 brew "golangci-lint"
+# JDK distribution with Graal compiler and Native Image
+brew "graalvm"
 # Modern load testing tool, using Go and JavaScript
 brew "k6"
 # LLM inference in C/C++
@@ -55,7 +55,7 @@ brew "nmap"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node@22"
 # Open-source, cross-platform JavaScript runtime environment
-brew "node@24", link: true
+brew "node@24"
 # Smart, Fast and Extensible Build System
 brew "nx"
 # Libosmium-based command-line tool for processing OpenStreetMap data
@@ -76,6 +76,8 @@ brew "protobuf"
 brew "pstree"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.11"
+# Software environment for statistical computing
+brew "r"
 # Messaging and streaming broker
 brew "rabbitmq"
 # Search tool like grep and The Silver Searcher
@@ -122,6 +124,8 @@ cask "claude-code"
 cask "cloudflare-warp"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
+# Write, edit, and chat about your code with AI
+cask "cursor"
 # Flip clock screensaver
 cask "fliqlo"
 # UI toolkit for building applications for mobile, web and desktop
@@ -132,42 +136,35 @@ cask "ghostty"
 cask "google-chrome"
 # Laravel and PHP development environment manager
 cask "herd"
+# Java IDE by JetBrains
+cask "intellij-idea"
 # App to manage software development and track bugs
 cask "linear"
 # Research management tool
 cask "mendeley-reference-manager"
+# Calendar for professionals and teams
+cask "notion-calendar"
 # Replacement for Docker Desktop
 cask "orbstack"
 # Control your tools with a few keystrokes
 cask "raycast"
+# JDK from the Eclipse Foundation (Adoptium)
+cask "temurin@21"
 # SSH client
 cask "termius"
-# Network protocol analyzer
-cask "wireshark-app"
-# Multiplayer code editor
-cask "zed"
+# Open-source code editor
+cask "visual-studio-code"
 vscode "aaron-bond.better-comments"
-vscode "adpyke.codesnap"
 vscode "astro-build.astro-vscode"
-vscode "aykutsarac.jsoncrack-vscode"
-vscode "biomejs.biome"
 vscode "bradlc.vscode-tailwindcss"
-vscode "bruceyuhb.hsl-preview"
 vscode "christian-kohler.path-intellisense"
-vscode "daltonmenezes.aura-theme"
 vscode "donjayamanne.python-extension-pack"
 vscode "dsznajder.es7-react-js-snippets"
 vscode "ecmel.vscode-html-css"
-vscode "evondev.indent-rainbow-palettes"
 vscode "expo.vscode-expo-theme"
 vscode "expo.vscode-expo-tools"
-vscode "formulahendry.code-runner"
-vscode "github.vscode-github-actions"
 vscode "golang.go"
-vscode "james-yu.latex-workshop"
-vscode "llvm-vs-code-extensions.lldb-dap"
 vscode "mechatroner.rainbow-csv"
-vscode "mehyaa.workspace-storage-cleanup"
 vscode "ms-python.debugpy"
 vscode "ms-python.python"
 vscode "ms-python.vscode-python-envs"
@@ -180,25 +177,16 @@ vscode "ms-toolsai.vscode-jupyter-slideshow"
 vscode "ms-vscode-remote.remote-ssh"
 vscode "ms-vscode-remote.remote-ssh-edit"
 vscode "ms-vscode-remote.remote-wsl"
-vscode "ms-vscode.cpp-devtools"
-vscode "ms-vscode.cpptools"
-vscode "ms-vscode.cpptools-extension-pack"
-vscode "ms-vscode.cpptools-themes"
 vscode "ms-vscode.remote-explorer"
 vscode "ms-vscode.vscode-typescript-next"
 vscode "oven.bun-vscode"
 vscode "pkief.material-icon-theme"
 vscode "redhat.vscode-yaml"
 vscode "ritwickdey.liveserver"
-vscode "scala-lang.scala"
-vscode "shd101wyy.markdown-preview-enhanced"
-vscode "swiftlang.swift-vscode"
-vscode "tomoki1207.pdf"
+vscode "typescriptteam.native-preview"
 vscode "wakatime.vscode-wakatime"
-vscode "yoavbls.pretty-ts-errors"
 go "golang.org/x/tools/gopls"
 go "google.golang.org/protobuf/cmd/protoc-gen-go"
 go "google.golang.org/grpc/cmd/protoc-gen-go-grpc"
-npm "corepack"
 npm "vercel"
 npm "yarn"

@@ -64,7 +64,6 @@
         "django-html": true,
         "python": true
     },
-    "workbench.colorTheme": "Expo Dark",
     "terminal.integrated.commandsToSkipShell": [
         "matlab.interrupt"
     ],
@@ -83,40 +82,12 @@
         "editor.defaultFormatter": "redhat.vscode-yaml"
     },
     "terminal.integrated.suggest.enabled": true,
-    "gitlens.ai.model": "vscode",
-    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
-    "javascript.updateImportsOnFileMove.enabled": "never",
-    "json.schemaDownload.trustedDomains": {
-        "https://schemastore.azurewebsites.net/": true,
-        "https://raw.githubusercontent.com/": true,
-        "https://www.schemastore.org/": true,
-        "https://json.schemastore.org/": true,
-        "https://json-schema.org/": true,
-        "https://biomejs.dev": true
-    },
     "chat.mcp.gallery.enabled": true,
-    "chat.viewSessions.orientation": "stacked",
-    "extensions.ignoreRecommendations": true,
-    "terminal.integrated.initialHint": false,
-    "chat.tips.enabled": false,
-    "claudeCode.preferredLocation": "panel",
-    "chat.plugins.marketplaces": [
-        "github/copilot-plugins",
-        "github/awesome-copilot",
-        "https://github.com/obra/superpowers"
-    ],
-    "git.openRepositoryInParentFolders": "never",
-    "git.confirmSync": false,
-    "chat.tools.urls.autoApprove": {
-        "https://code.visualstudio.com": true,
-        "https://github.com/microsoft/vscode/wiki/*": true,
-        "https://www.google.com": {
-            "approveRequest": false,
-            "approveResponse": true
-        }
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "remote.SSH.remotePlatform": {
+        "PekaShipyard": "linux"
     },
-    "git.addAICoAuthor": "off",
-    "chat.tools.terminal.autoApprove": {
-        "make": true
-    }
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gemini-3.1-pro-preview",
+    "workbench.colorTheme": "Expo Dark"
 }

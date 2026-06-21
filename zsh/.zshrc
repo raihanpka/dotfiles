@@ -113,29 +113,37 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Source machine-local overrides (not tracked in dotfiles)
-[[ ! -f ~/.zshrc.local ]] || source ~/.zshrc.local
-
-# Antigravity
-export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+# Added by Antigravity
+export PATH="/Users/raihanpk/.antigravity/antigravity/bin:$PATH"
 
 # Python
 export PATH="/opt/homebrew/opt/python@3.11/libexec/bin:$PATH"
 
-# Herd injected PHP configuration
-export HERD_PHP_84_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/php/84/"
-export PATH="$HOME/Library/Application Support/Herd/bin/:$PATH"
+# Claude
+# export ANTHROPIC_BASE_URL="http://168.110.201.118:5000/"
+# export ANTHROPIC_AUTH_TOKEN="sk-cdbb5e3ae16279e131450101316b211fea915b6449b27830"
+export ANTHROPIC_AUTH_TOKEN="sk-41d9497f2b08dd322575ae6e520d1329cecd1b4f6c85992e"
+export ANTHROPIC_BASE_URL="http://43.157.228.208:8080/"
+
+
+# Herd injected PHP 8.4 configuration.
+export HERD_PHP_84_INI_SCAN_DIR="/Users/raihanpk/Library/Application Support/Herd/config/php/84/"
+
+
+# Herd injected PHP binary.
+export PATH="/Users/raihanpk/Library/Application Support/Herd/bin/":$PATH
+export PNPM_NODE_BIN_PATH="$(which node)"
 
 # pnpm
-export PNPM_HOME="$HOME/Library/pnpm"
+export PNPM_HOME="/Users/raihanpk/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME/bin:"*) ;;
   *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
+# pnpm end
 
 # basictex
-TEXLIVE_DIR="/usr/local/texlive"
-if [ -d "$TEXLIVE_DIR" ]; then
-  TEX_BIN=$(ls "$TEXLIVE_DIR" | grep basic | head -n 1)
-  [ -n "$TEX_BIN" ] && export PATH="$TEXLIVE_DIR/$TEX_BIN/bin/universal-darwin:$PATH"
-fi
+export PATH="/usr/local/texlive/$(ls /usr/local/texlive | grep basic | head -n 1)/bin/universal-darwin:$PATH"
+
+# openjdk / java
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"

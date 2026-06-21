@@ -28,4 +28,3 @@ macos-option-as-alt = true
 
 # Keybind for Claude Code
 keybind = alt+t=text:\x1bt
-

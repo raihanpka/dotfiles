@@ -13,10 +13,10 @@ B='\033[0;34m'
 C='\033[0;36m'
 NC='\033[0m'
 
-info()  { echo -e "  ${C}::${NC} $1"; }
+info()  { echo -e "  ${Y}::${NC} $1"; }
 ok()    { echo -e "  ${G}OK${NC}  $1"; }
 warn()  { echo -e "  ${Y}!!${NC}  $1"; }
-fail()  { echo -e "  ${R}!!${NC}  $1"; }
+fail()  { echo -e "  ${Y}!!${NC}  $1"; }
 
 section() {
   local label="$1"
@@ -30,7 +30,7 @@ spinner() {
   local title="$1"
   shift
   local pid=""
-  local spin_chars='/-\|'
+  local spin_chars='\/'
   local i=0
 
   # Run the command in the background
@@ -40,7 +40,7 @@ spinner() {
   # Show spinner while it runs
   while kill -0 "$pid" 2>/dev/null; do
     local ch="${spin_chars:$i:1}"
-    printf "\r  ${C}%s${NC} %s" "$ch" "$title"
+    printf "\r  ${Y}%s${NC} %s" "$ch" "$title"
     i=$(( (i + 1) % ${#spin_chars} ))
     sleep 0.1
   done
@@ -52,7 +52,7 @@ spinner() {
   if [ $rc -eq 0 ]; then
     printf "\r  ${G}OK${NC}  %s\n" "$title"
   else
-    printf "\r  ${R}!!${NC}  %s\n" "$title"
+    printf "\r  ${Y}!!${NC}  %s\n" "$title"
     return $rc
   fi
 }
@@ -212,6 +212,6 @@ fi
 
 # Done
 echo
-echo -e "${G}  All done.${NC}"
-echo -e "  ${C}::${NC} Start a new shell:  ${B}exec zsh${NC}"
+echo -e "${Y}  All done.${NC}"
+echo -e "  ${Y}::${NC} Start a new shell:  ${B}exec zsh${NC}"
 echo
